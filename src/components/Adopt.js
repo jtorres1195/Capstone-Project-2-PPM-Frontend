@@ -8,7 +8,7 @@ const Adopt = () => {
         // Fetch data from the PetFinderAPI
         const fetchData = async () => {
             try {
-                const response = await fetch('PetFinder API endpoint')
+                const response = await fetch('GET https://api.petfinder.com/v2/animals');
                 const data = await response.json();
 
                 setPets(data.pets);

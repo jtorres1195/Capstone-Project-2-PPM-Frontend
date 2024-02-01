@@ -6,7 +6,7 @@ const Species = () => {
     useEffect(() => {
         const fetchAnimalTypes = async () => {
             try {
-                const response = await fetch('GET https://api.petfinder.com/v2/types')
+                const response = await fetch('GET https://api.petfinder.com/v2/types');
                 const data = await response.json();
                 setAnimalTypes(data.types);
             } catch (error) {

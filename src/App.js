@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Home from './Home';
-import About from './About';
-import Adopt from './Adopt';
-import Navbar from './Navbar';
-import Species from './Species';
-import EmailSubscriptions from './EmailSubscriptions';
+import Home from './components/Home';
+import About from './components/About';
+import Adopt from './components/Adopt';
+import Navbar from './components/Navbar';
+import Species from './components/Species';
+import EmailSubscriptions from './components/EmailSubscriptions';
 import './App.css';
 
 function App() {
   return (
     <Router>
-      <NavBar />
+      <Navbar />
       <Routes>
         <Route path="/" exact component={Home} />
         <Route path="/about" component={About} />
@@ -23,3 +23,5 @@ function App() {
     </Router>
   );
 }
+
+export default App;
