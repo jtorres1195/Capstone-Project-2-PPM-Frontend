@@ -4,9 +4,14 @@
     list-style: none;
     display: flex;
     margin: 0;
-    padding: 0;
+    padding: 10px;
+    background-color: #ff5e00;
 }
 
 .navbar-item {
     margin-right: 20px;
+}
+
+.login-section {
+    margin-left: auto;
 }

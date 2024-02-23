@@ -5,6 +5,8 @@ const User = require('../models/User');
 
 const router = express.Router();
 
+const secretKey = 'DoaBsiWq+cOj/+hvmaD2GReGBaxZVBuJlreW6hfEdo8=';
+
 router.post('/login', async (req, res) => {
     try {
         // Extract email and password from request body
@@ -25,7 +27,7 @@ router.post('/login', async (req, res) => {
         }
 
         // If the email and password are correct, generate a JWT token
-        const token = jwt.sign({ userId: user.id, email: user.email }, 'your-secret-key', {
+        const token = jwt.sign({ userId: user.id, email: user.email }, secretKey, {
             expiresIn: '1h', //Token expiration time
         });
         

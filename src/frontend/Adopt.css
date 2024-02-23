@@ -1,0 +1,17 @@
+/* Adopt styles */
+
+.adopt-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.adopt-header {
+    color: #333;
+    font-size: 2.5rem;
+}
+
+.adopt-body {
+    color: #666;
+    font-size: 1.5rem;
+    margin-top: 20px;
+}

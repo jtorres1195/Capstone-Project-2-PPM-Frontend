@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Species.css';
 
 const Species = () => {
     const [animalTypes, setAnimalTypes] = useState([]);
@@ -6,7 +7,7 @@ const Species = () => {
     useEffect(() => {
         const fetchAnimalTypes = async () => {
             try {
-                const response = await fetch('GET https://api.petfinder.com/v2/types');
+                const response = await fetch('https://api.petfinder.com/v2/types');
                 const data = await response.json();
                 setAnimalTypes(data.types);
             } catch (error) {
@@ -17,9 +18,9 @@ const Species = () => {
         fetchAnimalTypes();
     }, []); 
     return (
-        <div>
-            <h2>Animal Species</h2>
-            <ul>
+        <div className='species-container'>
+            <h2 className='species-header'>Animal Species</h2>
+            <ul className='species-body'>
                 {animalTypes.map((type) => (
                     <li key={type.id}>
                         <h3>{type.name}</h3>
