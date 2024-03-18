@@ -5,12 +5,17 @@ import './Navbar.css';
 
 const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
     const handleLogout = () => {
         sessionStorage.removeItem('userToken');
         setIsLoggedIn(false);
         navigate.push('/login');
+    }
+
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
     }
 
     return (
@@ -23,13 +28,27 @@ const Navbar = () => {
                     <Link to="/about">About</Link>
                 </li>
                 <li className="navbar-item">
-                    <Link to="/adopt">Adopt</Link>
+                    <Link to="/pets">Pets</Link>
                 </li>
                 <li className="navbar-item">
                     <Link to="/species">Species</Link>
                 </li>
                 <li className="navbar-item">
                     <Link to="/emailSubscriptions">Subscribe</Link>
+                </li>
+                {/* Conditionally render the Profile link if user is logged in */}
+                {isLoggedIn && (
+                <li className="navbar-item">
+                    <Link to="/userProfile">Profile</Link>
+                </li>
+                )}
+                <li className="navbar-item">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    />
                 </li>
                 {isLoggedIn ? (
                     <li className="navbar-item">

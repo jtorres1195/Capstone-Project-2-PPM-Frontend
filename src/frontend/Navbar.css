@@ -1,5 +1,6 @@
 /* Navbar Styles */
 
+/* List */
 .navbar-list {
     list-style: none;
     display: flex;
@@ -8,10 +9,12 @@
     background-color: #ff5e00;
 }
 
+/* Item */
 .navbar-item {
     margin-right: 20px;
 }
 
+/* Login Section */
 .login-section {
     margin-left: auto;
 }

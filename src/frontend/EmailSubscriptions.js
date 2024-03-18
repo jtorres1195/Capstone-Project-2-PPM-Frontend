@@ -4,18 +4,29 @@ import './EmailSubscriptions.css';
 const EmailSubscriptions = () => {
     const [email, setEmail] = useState('');
     const [subscribed, setSubscribed] = useState(false);
-    const [error, setError] =useState(null);
+    const [error, setError] = useState(null);
 
-    const handleSubscribe = () => {
+    const handleSubscribe = async () => {
         try {
-            setTimeout(() => {
-                throw new Error('Subscription failed. Please try again later.');
-            }, 1000);
-        } catch (error) {
-            setError(error.message);
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error);
+            }
+
             setSubscribed(true);
+            setError(null);
+        } catch (error) {
+            setError('Subscription failed: ' + error.message);
         }
-    }
+    };
 
     return (
         <div className='subscribe-container'>

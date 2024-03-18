@@ -1,5 +1,6 @@
 /* Signup styles */
 
+/* Container */
 .signup-container {
     max-width: 400px;
     margin: 0 auto;
@@ -9,6 +10,7 @@
     background-color: #f9f9f9;
 }
 
+/* Header */
 .signup-header {
     text-align: center;
     margin-bottom: 20px;
@@ -16,16 +18,19 @@
     color: #333;
 }
 
+/* Forms */
 .signup-form {
     display: flex;
     flex-direction: column;
 }
 
+/* Label */
 .signup-label {
     margin-bottom: 10px;
     margin-right: 10px; 
 }
 
+/* Input */
 .signup-input {
     margin-bottom: 15px;
     padding: 10px;
@@ -33,10 +38,12 @@
     border-radius: 3px;
 }
 
+/* Button */
 .signup-button {
     background-color: #1e87f0;
 }
 
+/* Errors */
 .signup-error {
     color: red;
     margin-top: 10px;

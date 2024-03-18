@@ -1,29 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-// eslint-disable-next-line no-unused-vars
-const loginUser = async (email, password, setError) => {
-    try {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message);
-        }
-
-        const data = await response.json();
-        return data.token;
-    } catch (error) {
-        setError('Login failed: ' + error.message);
-    }
-};
-
 const Login = () => {
     // State to track user input
     const [email, setEmail] = useState('');
@@ -35,10 +12,25 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const token = await loginUser(email, password);
-            console.log('Login successful! Token:', token);
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            // Check if the response is successful
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message);
+            }
+
+            // If successful, extract the token from the the response
+            const data = await response.json();
+            console.log('Login successful! Token:', data.token);
         } catch (error) {
-            setError(error.message);
+            setError('Login failed: ', error.message);
         }
     };
 

@@ -1,0 +1,70 @@
+/* UserProfile styles */
+
+/* Container */
+.user-profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Heading */
+.user-profile-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Input fields */
+.user-profile-input {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Buttons */
+.user-profile-button {
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-profile-button:hover {
+    background-color: #0056b3;
+}
+
+/* Saved Pets */
+.saved-pets-container {
+    margin-top: 20px;
+}
+
+.saved-pets-heading {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.saved-pet-item {
+    margin-bottom: 20px;
+}
+
+.saved-pet-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 4px;
+}
+
+.saved-pet-details {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.saved-pet-details p {
+    margin: 0;
+}
+

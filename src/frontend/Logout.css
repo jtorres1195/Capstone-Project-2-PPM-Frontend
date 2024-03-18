@@ -1,0 +1,17 @@
+/* Logout styles */
+
+/* Container */
+.logout-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Heading */
+.logout-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+

@@ -2,12 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import HomePage from './frontend/Home';
 import About from './frontend/About';
-import Adopt from './frontend/Adopt';
+import Pets from './frontend/Pets';
 import Navbar from './frontend/Navbar';
 import Species from './frontend/Species';
 import EmailSubscriptions from './frontend/EmailSubscriptions';
 import Login from './frontend/Login';
 import Signup from './frontend/Signup';
+import UserProfile from'./frontend/UserProfile';
 import './App.css';
 
 
@@ -18,12 +19,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}/>
         <Route path="/about" element={<About />} />
-        <Route path="/adopt" element={<Adopt />} />
+        <Route path="/pets" element={<Pets />} />
         <Route path="/species" element={<Species />} />
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/emailsubscriptions" element={<EmailSubscriptions />} />
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<Signup />}/>
+        <Route path="/userprofile" element={<UserProfile/>}/>
       </Routes>
     </Router>
   );
