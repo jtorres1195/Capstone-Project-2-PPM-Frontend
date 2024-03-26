@@ -1,29 +1,39 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Home.css';
 
 function HomePage() {
     const [featuredPets, setFeaturedPets] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchFeaturedPets = async () => {
             try {
-                const response = await fetch('/api/pets/featured');
-
-                const contentType = response.headers.get('content-type');
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw new Error('Unexpected response format');
+                const token = localStorage.getItem('petApiToken');
+                if (!token) {
+                    throw new Error('No token available');
                 }
+                
+                const response = await axios.get('http://localhost:3001/featuredPets', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
 
-                const data = await response.json();
-                setFeaturedPets(data);
+                if (response.status === 200) {
+                    setFeaturedPets(response.data.slice(0, 5));
+                } else {
+                    throw new Error('Failed to fetch featured pets');
+                }
             } catch (error) {
                 console.error('Error fetching featured pets:', error);
+                setError('Failed to fetch featured pets');
             };
         }
 
         fetchFeaturedPets();
     }, []);
-    
+
     return (
         <div className='home-container'>
             <img src='/logo.jpg' alt='Logo' className='logo' />
@@ -34,13 +44,23 @@ function HomePage() {
             </h3>
             <h2 className='featured-pets-title'>Featured Pets</h2>
             <div className='featured-pets-container'>
-                {featuredPets.map((pet) => (
-                    <div key={pet.id} className='featured-pet'>
-                        <img src={pet.photo} alt={pet.name} className='pet-image' />
-                        <h3 className='pet-name'>{pet.name}</h3>
-                        <p className='pet-description'>{pet.description}</p>
-                    </div>
-                ))}
+                {error ? (
+                    <div className="error-message">{error}</div>
+                ) : (
+                    featuredPets.map(pet => (
+                        <div key={pet.id} className='featured-pet'>
+                            {pet.primary_photo_cropped && (
+                                <a href={pet.url} target="_blank" rel="noopener noreferrer">
+                                <img src={pet.primary_photo_cropped.medium} alt={pet.name} />
+                                </a>
+                            )}
+                            <h3 className="pet-name">
+                                <a href={pet.url} target="_blank" rel="noopener noreferrer" className="pet-link">{pet.name}</a>
+                            </h3>
+                            <p className='pet-description'>{pet.description}</p>
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );

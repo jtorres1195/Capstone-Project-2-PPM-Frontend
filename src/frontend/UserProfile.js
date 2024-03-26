@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useHistory } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
@@ -12,7 +13,7 @@ const Profile = () => {
     const [newPassword, setNewPassword] = useState('');
     const [savedPets, setSavedPets] = useState([]);
     // const [profilePicture, setProfilePicture] = useState(null);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchProfile();
@@ -21,7 +22,7 @@ const Profile = () => {
     const fetchProfile = async () => {
         try {
             // Fetch profile data through get request
-            const response = await fetch('/profile', {
+            const response = await fetch('http://localhost:3001/userProfile', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -43,13 +44,13 @@ const Profile = () => {
         } catch (error) {
             console.error('Error fetching profile:', error);
             // Redirect to login page or handle error accordingly
-            history.push('/login');
+            navigate.push('/login');
         }
     };
 
     const updateProfile = async () => {
         try {
-            const response = await fetch(`/profile/$profileData.id/update`, {
+            const response = await fetch(`/profile/$profileData.userId/update`, {
                 method: 'PUT',
                 header: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -71,7 +72,7 @@ const Profile = () => {
 
     const changePassword = async () => {
         try {
-            const response = await fetch(`/profile/$profileData.id/change-password`, {
+            const response = await fetch(`/profile/$profileData.userId/change-password`, {
                 method: 'PUT',
                 header: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -92,9 +93,10 @@ const Profile = () => {
         }
     };
 
+
     const fetchSavedPets = async (userId) => {
         try {
-            const response = await fetch(`/users/$userId}/saved-pets`, {
+            const response = await fetch(`/${userId}/saved-pets`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -141,16 +143,16 @@ const Profile = () => {
     //         const formData = new FormData();
     //         formData.append('profilePicture', profilePicture);
 
-    //         const response = await fetch('/upload-profile-picture', {
-    //             method: 'POST',
-    //             body: formData,
+    //         const response = await fetch('http://localhost:3001/upload-profile-picture', formData, {
     //             headers: {
     //                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    //                 'Content-Type': 'multipart/form-data', // Header for file uploads 
     //             },
     //         });
 
     //         if (response.ok) {
     //             console.log('Profile picture uploaded successfully');
+    //             fetchProfile(); // Refresh profile data if needed
     //         } else {
     //             console.error('Failed to upload profile picture');
     //         }
@@ -171,7 +173,7 @@ const Profile = () => {
             if (response.ok) {
                 // Logout successful, navigate to the logout success page
                 localStorage.removeItem('token'); // Clear token from localStorage
-                history.push('/logout-success');
+                navigate.push('/logout-success');
             } else {
                 // Handle logout failure
                 console.error('Logout failed');

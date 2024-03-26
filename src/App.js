@@ -4,7 +4,8 @@ import HomePage from './frontend/Home';
 import About from './frontend/About';
 import Pets from './frontend/Pets';
 import Navbar from './frontend/Navbar';
-import Species from './frontend/Species';
+import AnimalTypes from './frontend/AnimalTypes';
+import AnimalType from './frontend/AnimalType';
 import EmailSubscriptions from './frontend/EmailSubscriptions';
 import Login from './frontend/Login';
 import Signup from './frontend/Signup';
@@ -20,7 +21,8 @@ function App() {
         <Route path="/" element={<HomePage />}/>
         <Route path="/about" element={<About />} />
         <Route path="/pets" element={<Pets />} />
-        <Route path="/species" element={<Species />} />
+        <Route path="/animalTypes/:type" element={<AnimalType />} />
+        <Route path="/animalTypes" element={<AnimalTypes />} />
         <Route path="/navbar" element={<Navbar />} />
         <Route path="/emailsubscriptions" element={<EmailSubscriptions />} />
         <Route path="/login" element={<Login />}/>

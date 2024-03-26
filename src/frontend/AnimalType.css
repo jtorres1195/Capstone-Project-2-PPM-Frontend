@@ -1,0 +1,47 @@
+/* Animal Type styles */
+
+/* Container */
+.animal-type-container {
+    margin: 20px;
+}
+
+/* Header */
+.animal-type-header {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Centered Header */
+.centered {
+    text-align: center;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+/* JSON data */
+.animal-type-json {
+    font-family: monospace;
+    font-size: 1rem;
+    color: #666;
+    white-space: pre-wrap;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+/* Pet Images */
+.pets-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+.pet-name a {
+    color: black;
+    text-decoration: none;
+}
+
+.pet-name a:hover,
+.pet-name a:focus {
+    color: #FF5733; 
+}

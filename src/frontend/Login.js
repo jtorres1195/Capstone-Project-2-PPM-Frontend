@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
@@ -6,13 +7,21 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Form submitted");
+
+        if (!email || !password) {
+            setError('Please enter both email and password.');
+            return;
+        }
 
         try {
-            const response = await fetch('/login', {
+            console.log('Making API call...');
+            const response = await fetch('http://localhost:3001/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,17 +29,34 @@ const Login = () => {
                 body: JSON.stringify({ email, password }),
             });
 
+            console.log('Response status:', response.status);
+
             // Check if the response is successful
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message);
+                const errorData = await response.json(); // Parsing the response body to get more detailed error message
+                throw new Error(errorData.message || 'An unknown error occurred during login.');
             }
 
-            // If successful, extract the token from the the response
             const data = await response.json();
             console.log('Login successful! Token:', data.token);
+
+            // Store the token securely and redirect the user
+            localStorage.setItem('token', data.token);
+            console.log('Login successful! Redirecting...');
+
+            // Reset the form inputs
+            setEmail('');
+            setPassword('');
+            setError(''); 
+
+            console.log("Before navigate");
+            navigate('/userprofile');
+            console.log("After navigate"); 
         } catch (error) {
-            setError('Login failed: ', error.message);
+            console.error('Error during login:', error);
+            setError(`Login failed: ${error.message}`);
+        } finally {
+            console.log("API call finished");
         }
     };
 

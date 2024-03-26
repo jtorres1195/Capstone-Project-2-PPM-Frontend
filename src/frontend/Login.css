@@ -10,6 +10,10 @@
     background-color: #f9f9f9;
 }
 
+.login-container :hover {
+    cursor: pointer;
+}
+
 /* Header */
 .login-header {
     text-align: center;

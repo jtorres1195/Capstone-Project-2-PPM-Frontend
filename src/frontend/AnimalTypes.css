@@ -1,0 +1,62 @@
+/* Animal Types styles */
+
+/* Hover effect */
+.animalTypes-body:hover {
+    cursor: pointer;
+}
+
+/* AnimalTypes container */
+.animalTypes-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Header */
+.animalTypes-header {
+    color: #000000;
+    font-size: 2.5rem;
+}
+
+/* Search container */
+.search-container {
+    margin-top: 20px;
+}
+
+/* Search input */
+.search-input {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+/* AnimalTypes list */
+.animalTypes-body {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* AnimalTypes list item */
+.animalTypes-body li {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* AnimalTypes list item hover effect */
+.animalTypes-body li:hover span {
+    color: #FF5733; 
+}
+
+/* AnimalTypes name */
+.animalTypes-body li h3 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* AnimalTypes name span */
+.animalTypes-body li h3 span {
+    color: #000000; 
+    
+}

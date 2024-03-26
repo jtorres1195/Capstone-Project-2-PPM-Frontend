@@ -9,7 +9,6 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-
     const navigate = useNavigate();
 
     //Function to handle form submission
@@ -22,7 +21,7 @@ const Signup = () => {
     }
 
         try {
-            const response = await fetch('/signup', {
+            const response = await fetch('http://localhost:3001/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -11,7 +11,7 @@ const Logout = () => {
 
     const logoutUser = async () => {
         try {
-            const response = await fetch('/logout', {
+            const response = await fetch('http://localhost:3001/logout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
