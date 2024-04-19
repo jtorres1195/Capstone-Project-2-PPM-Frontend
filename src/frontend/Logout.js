@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import './Logout.css'
+import { useNavigate } from 'react-router-dom';
+import './Logout.css';
 
 const Logout = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         logoutUser();
     }, []);
 
     const logoutUser = async () => {
+        const url = 'http://localhost:3001/authRouter/logout';
         try {
-            const response = await fetch('http://localhost:3001/logout', {
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -19,10 +20,8 @@ const Logout = () => {
             });
 
             if (response.ok) {
-                // Logout successful, navigate to the logout success page
-                history.push('/logout-success');
+                navigate('/logout-success');
             } else {
-                // Handle logout failure
                 console.error('Logout failed');
             }
         } catch (error) {
@@ -35,6 +34,6 @@ const Logout = () => {
             <h2 className='logout-heading'>Logging out...</h2>
         </div>
     );
-}
+};
 
 export default Logout;

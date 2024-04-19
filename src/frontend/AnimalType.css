@@ -2,46 +2,76 @@
 
 /* Container */
 .animal-type-container {
-    margin: 20px;
+    text-align: center;
+    margin-top: 50px;
 }
 
 /* Header */
 .animal-type-header {
-    font-size: 2rem;
-    color: #333;
+    color: #000000;
+    font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
-/* Centered Header */
-.centered {
-    text-align: center;
-    margin: 0 auto;
-    width: fit-content;
+/* Body */
+.animals-body {
+    color: #000000;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    word-wrap: break-word;
+    list-style-type: none;
 }
 
-/* JSON data */
-.animal-type-json {
-    font-family: monospace;
-    font-size: 1rem;
-    color: #666;
-    white-space: pre-wrap;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-}
-
-/* Pet Images */
-.pets-body img {
-    max-width: 100%;
+.animals-body img {
+    width: 500px;
     height: auto;
 }
 
-.pet-name a {
-    color: black;
-    text-decoration: none;
+.animals-body:hover {
+    cursor: pointer;
 }
 
-.pet-name a:hover,
-.pet-name a:focus {
-    color: #FF5733; 
+.animal-name {
+    color: #000000;
+    transition: color 0.3s;
+}
+
+.animal-name a {
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.animal-name a:hover {
+    color: #FF5733;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+}
+
+.pagination button:hover {
+    background-color: #e0e0e0;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    margin: 0 10px;
 }

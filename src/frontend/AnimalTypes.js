@@ -6,40 +6,27 @@ const AnimalTypes = () => {
     const [animalTypes, setAnimalTypes] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
+    const url = 'http://localhost:3001/animalTypes';
 
     useEffect(() => {
         const fetchAnimalTypes = async () => {
             try {
-                const token = localStorage.getItem('petApiToken');
-                if (!token) {
-                    throw new Error('No token available');
-                }
-
-                const response = await fetch('http://localhost:3001/animalTypes', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+                const response = await fetch(url);
 
                 if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-
-                const contentType = response.headers.get('content-type');
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw new Error('Unexpected response format');
+                    throw new Error(`Failed to fetch data: ${response.statusText}`);
                 }
 
                 const data = await response.json();
-
+                console.log(data);
                 setAnimalTypes(data.animalTypes);
             } catch (error) {
                 console.error('Error fetching animal types:', error);
             }
-        }
+        };
 
         fetchAnimalTypes();
-    }, []); 
+    }, []);
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -62,14 +49,14 @@ const AnimalTypes = () => {
                 />
             </div>
             <ul className='animalTypes-body'>
-                {animalTypes.map((type) => (
+                {animalTypes.filter(type => type.name.toLowerCase().includes(searchQuery.toLowerCase())).map((type) => (
                     <li key={type.id} onClick={() => handleClick(type)}>
                         <h3><span>{type.name}</span></h3>
                     </li>
                 ))}
             </ul>
         </div>
-    )
+    );
 }
 
 export default AnimalTypes;

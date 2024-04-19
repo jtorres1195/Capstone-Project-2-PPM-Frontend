@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './Home.css';
 
 function HomePage() {
     const [featuredPets, setFeaturedPets] = useState([]);
     const [error, setError] = useState(null);
+    const url = 'http://localhost:3001/featuredPets';
 
     useEffect(() => {
         const fetchFeaturedPets = async () => {
             try {
-                const token = localStorage.getItem('petApiToken');
-                if (!token) {
-                    throw new Error('No token available');
-                }
-                
-                const response = await axios.get('http://localhost:3001/featuredPets', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+                const response = await fetch(url);
+                console.log('HTTP Response:', response);
 
-                if (response.status === 200) {
-                    setFeaturedPets(response.data.slice(0, 5));
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Complete API response data:', data);
+
+                    if (Array.isArray(data)) {
+                        setFeaturedPets(data.slice(0, 5));
+                    } else {
+                        console.error('Unexpected response structure or no animals data:', data);
+                        throw new Error('Failed to fetch featured pets due to unexpected data format or empty data.');
+                    }
                 } else {
-                    throw new Error('Failed to fetch featured pets');
+                    throw new Error(`Failed to fetch featured pets: ${response.status} ${response.statusText}`);
                 }
             } catch (error) {
                 console.error('Error fetching featured pets:', error);
-                setError('Failed to fetch featured pets');
-            };
-        }
+                setError(error.message || 'Failed to fetch featured pets');
+            }
+        };
 
         fetchFeaturedPets();
     }, []);
@@ -51,7 +51,7 @@ function HomePage() {
                         <div key={pet.id} className='featured-pet'>
                             {pet.primary_photo_cropped && (
                                 <a href={pet.url} target="_blank" rel="noopener noreferrer">
-                                <img src={pet.primary_photo_cropped.medium} alt={pet.name} />
+                                    <img src={pet.primary_photo_cropped.medium} alt={pet.name} />
                                 </a>
                             )}
                             <h3 className="pet-name">
