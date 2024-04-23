@@ -18,7 +18,7 @@ const Profile = () => {
     }, []);
 
     const fetchProfile = async () => {
-        const url = 'http://localhost:3001/userProfile'; // Use a constant for the URL
+        const url = 'https://perfect-pet-match-backend-server.onrender.com/userProfile'; // Use a constant for the URL
         try {
             const response = await fetch(url, {
                 method: 'GET',

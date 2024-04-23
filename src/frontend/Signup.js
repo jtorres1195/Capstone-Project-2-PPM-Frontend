@@ -18,7 +18,7 @@ const Signup = () => {
             return;
         }
 
-        const url = 'http://localhost:3001/authRouter/signup';  // Backend URL for the signup endpoint
+        const url = 'https://perfect-pet-match-backend-server.onrender.com/authRouter/signup';  // Backend URL for the signup endpoint
         try {
             const response = await fetch(url, {
                 method: 'POST',

@@ -4,7 +4,7 @@ import './Home.css';
 function HomePage() {
     const [featuredPets, setFeaturedPets] = useState([]);
     const [error, setError] = useState(null);
-    const url = 'http://localhost:3001/featuredPets';
+    const url = 'https://perfect-pet-match-backend-server.onrender.com/featuredPets';
 
     useEffect(() => {
         const fetchFeaturedPets = async () => {

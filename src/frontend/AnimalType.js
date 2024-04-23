@@ -14,7 +14,7 @@ const AnimalType = () => {
     useEffect(() => {
         const fetchAnimalType = async () => {
             setIsLoading(true);
-            const url = `http://localhost:3001/pets?type=${encodeURIComponent(type)}&page=${currentPage}&limit=${animalsPerPage}`;
+            const url = `https://perfect-pet-match-backend-server.onrender.com/pets?type=${encodeURIComponent(type)}&page=${currentPage}&limit=${animalsPerPage}`;
             console.log('Requesting URL:', url); 
             
             try {

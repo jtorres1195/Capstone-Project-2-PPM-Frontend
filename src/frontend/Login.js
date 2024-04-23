@@ -17,7 +17,7 @@ const Login = () => {
             return;
         }
 
-        const url = 'http://localhost:3001/authRouter/login'; // URL for the login API
+        const url = 'https://perfect-pet-match-backend-server.onrender.com/authRouter/login'; // URL for the login API
 
         try {
             console.log('Making API call...');

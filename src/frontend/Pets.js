@@ -47,7 +47,7 @@ const Pets = () => {
             const userId = localStorage.getItem('userId');
             if (!userId) throw new Error("User not found.");
 
-            const saveUrl = `http://localhost:3001/user/${userId}/save-pet/${petId}`;
+            const saveUrl = `https://perfect-pet-match-backend-server.onrender.com/${userId}/save-pet/${petId}`;
             const response = await fetch(saveUrl, {
                 method: 'POST'
             });

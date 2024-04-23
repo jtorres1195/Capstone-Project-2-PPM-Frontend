@@ -10,7 +10,7 @@ const Logout = () => {
     }, []);
 
     const logoutUser = async () => {
-        const url = 'http://localhost:3001/authRouter/logout';
+        const url = 'https://perfect-pet-match-backend-server.onrender.com/logout';
         try {
             const response = await fetch(url, {
                 method: 'POST',

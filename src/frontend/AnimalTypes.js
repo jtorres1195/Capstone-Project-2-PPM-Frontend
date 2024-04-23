@@ -6,7 +6,7 @@ const AnimalTypes = () => {
     const [animalTypes, setAnimalTypes] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
-    const url = 'http://localhost:3001/animalTypes';
+    const url = 'https://perfect-pet-match-backend-server.onrender.com/animalTypes';
 
     useEffect(() => {
         const fetchAnimalTypes = async () => {

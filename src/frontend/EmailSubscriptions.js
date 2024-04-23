@@ -8,7 +8,7 @@ const EmailSubscriptions = () => {
 
     const handleSubscribe = async () => {
         try {
-            const response = await fetch('http://localhost:3001/emailSubscription/subscribe', {
+            const response = await fetch('https://perfect-pet-match-backend-server.onrender.com/emailSubscription/subscribe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
