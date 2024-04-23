@@ -7,7 +7,7 @@ const Pets = () => {
     const [petsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const url = `http://localhost:3001/pets?page=${currentPage}&limit=${petsPerPage}`; 
+    const url = `https://perfect-pet-match-backend-server.onrender.com/pets?page=${currentPage}&limit=${petsPerPage}`; 
 
     useEffect(() => {
         const fetchPets = async () => {
